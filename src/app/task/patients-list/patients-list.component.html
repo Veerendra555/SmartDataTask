@@ -1,0 +1,128 @@
+<!--Add Patient Details Form Start-->
+<div class="container">
+    <div class="card">
+        <div class="card-header h4 text-warning text-center">
+            {{formTitle}} Patient Details
+        </div>
+        <div class="card-body">
+            <form #patientForm='ngForm' novalidate (ngSubmit)="addPatient(patientForm)">
+            <div class="row">
+                <div class="col-md-5" >
+                    <div class="mb-3">
+                        
+                        <label for="exampleFormControlInput1" class="form-label">Patient Id</label>
+                        <input type="text"   class="form-control" id="exampleFormControlInput1" placeholder="PA1234" 
+                         name="patientId"  [(ngModel)]="patientDetails.patientId" #patientId="ngModel" required
+                        >
+                        <div *ngIf="patientId.invalid && (patientId.dirty || patientId.touched)" class="form-text text-danger">
+                            <div *ngIf="patientId.errors.required"> Patient Id is required. </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Patient Name</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Patient Name"
+                        name="patientName"  [(ngModel)]="patientDetails.patientName" #patientName="ngModel" required
+                        >
+                        <div *ngIf="patientName.invalid && (patientName.dirty || patientName.touched)" class="form-text text-danger">
+                            <div *ngIf="patientName.errors.required"> Patient Name is required. </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">clinician Name</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Clinician Name"
+                        name="clinicianName"  [(ngModel)]="patientDetails.clinicianName" #clinicianName="ngModel" required
+                        >
+                        <div *ngIf="clinicianName.invalid && (clinicianName.dirty || clinicianName.touched)" class="form-text text-danger">
+                            <div *ngIf="clinicianName.errors.required"> Clinician Name is required. </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Start Date</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput1" 
+                        name="startDate"  [(ngModel)]="patientDetails.startDate" #startDate="ngModel" required
+                        >
+                        <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)" class="form-text text-danger">
+                            <div *ngIf="startDate.errors.required"> startDate is required. </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Start Time</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Start Time"
+                        name="startTime"  [(ngModel)]="patientDetails.startTime" #startTime="ngModel" required
+                        >
+                        <div *ngIf="startTime.invalid && (startTime.dirty || startTime.touched)" class="form-text text-danger">
+                            <div *ngIf="startTime.errors.required"> startTime is required. </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Duration</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Enter In Minutes"
+                        name="duration"  [(ngModel)]="patientDetails.duration" #duration="ngModel" required
+                        >
+                        <div *ngIf="duration.invalid && (duration.dirty || duration.touched)" class="form-text text-danger">
+                            <div *ngIf="duration.errors.required"> Duration is required. </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-4">
+                    <button type="submit" *ngIf="formTitle == 'Add' " class="btn btn-primary m-2" [disabled]="patientForm.invalid">Add</button>
+                    <button type="button" *ngIf="formTitle != 'Add' " class="btn btn-primary m-2" (click)="updatePatient(patientForm)" [disabled]="patientForm.invalid">Update</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+            </div>
+        </form>  
+        </div>
+    </div>
+</div>
+<!--Add Patient Details Form End-->
+<!--Patient Details  Start--->
+<div class="container mt-4 mb-4" >
+    <table datatable [dtOptions]="dtOptions" class="row-border hover table-striped">
+        <thead class="bg-primary">
+          <tr>
+            <th>Sno</th>
+            <th>Patient Id</th>
+            <th>Patient Name</th>
+            <th>Clinician Name</th>
+            <th>Start Date</th>
+            <th>Start Time</th>
+            <th>Duration</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of patientsData;let i=index" [ngStyle]="data.duration > 60 && {'color': 'red'}">
+            <td>{{i+1}}</td>
+            <td>{{data.patientId}}</td>
+            <td>{{data.patientName}}</td>
+            <td>{{data.clinicianName}}</td>
+            <td>{{data.startDate}}</td>
+            <td>{{data.startTime}}</td>
+            <td>{{data.duration}}</td>
+            <td>
+                <span class="editBtn" (click)="assignPatient(data)">Edit</span>
+                <span class="deleteBtn" (click)="deletePatient(data.patientId)" >Delete</span>
+           </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+<!--Patient Details  Ends--->

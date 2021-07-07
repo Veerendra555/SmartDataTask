@@ -1,0 +1,34 @@
+[
+    {
+        "patientId":"P1231",
+        "patientName":"Raj",
+        "clinicianName":"Veerendra",
+        "startDate":"2021-07-15",
+        "startTime":"10 AM",
+        "duration": 30
+    },
+    {
+        "patientId":"P1232",
+        "patientName":"Sam",
+        "clinicianName":"Lokesh",
+        "startDate":"2021-08-21",
+        "startTime":"10 AM",
+        "duration": 60
+    },
+    {
+        "patientId":"P1234",
+        "patientName":"Sunny",
+        "clinicianName":"Jevaan",
+        "startDate":"2021-06-18",
+        "startTime":"10 AM",
+        "duration": 180
+    },
+    {
+        "patientId":"P1212",
+        "patientName":"Raghu",
+        "clinicianName":"Ja",
+        "startDate":"2021-07-11",
+        "startTime":"10 AM",
+        "duration": 59
+    }
+]
